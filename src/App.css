@@ -57,7 +57,10 @@ table, tr {
 }
 th, td {
   border: 1px solid #111;
-  padding: 12px 0;
+  padding: 12px;
+}
+th:first-of-type {
+  width: 40%;
 }
 th {
   background-color: #eee;
