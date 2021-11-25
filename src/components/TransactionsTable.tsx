@@ -1,8 +1,9 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 
 import store from '../store/store';
 
-export const TransactionsTable: React.FC = () => {
+const TransactionsTable: React.FC = () => {
     return <>
         <table>
             <thead>
@@ -19,6 +20,12 @@ export const TransactionsTable: React.FC = () => {
                         <tr key={i}>
                             <td>{expense.title}</td>
                             <td>{expense.amount}</td>
+                            <td>{(expense.amount / store.plnToEur).toFixed(3)}</td>
+                            <td>
+                                <div className="remove-expense">
+                                    Remove
+                                </div>
+                            </td>
                         </tr>
                     )
                 })}
@@ -26,3 +33,5 @@ export const TransactionsTable: React.FC = () => {
         </table>
     </>
 }
+
+export default observer(TransactionsTable);

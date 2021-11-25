@@ -1,9 +1,15 @@
-import React from 'react'
+import { observer } from 'mobx-react-lite';
+import React from 'react';
 
-export const Sum: React.FC = () => {
+import store from '../store/store';
+
+const Sum: React.FC = () => {
+
     return <>
         <div className="sum-display">
-            Sum of expenses: 333 PLN (111 EUR)
+            Sum of expenses: {store.sumExpenses()} PLN ({(store.sumExpenses() / (store.plnToEur)).toFixed(3)} EUR)
         </div>
     </>
 }
+
+export default observer(Sum);
