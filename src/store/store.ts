@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 
 export interface Expense {
+    id: number;
     title: string;
     amount: number;
 }
@@ -8,16 +9,20 @@ export interface Expense {
 const addExpense = (expenses: Expense[], newExpense: Expense): Expense[] => [
     ...expenses,
     {
+        id: newExpense.id,
         title: newExpense.title,
         amount: newExpense.amount
     }
 ];
 
+const removeExpense = (expenses: Expense[], id: number): Expense[] => {
+    return expenses.splice(id, 1);
+}
+
 class Store {
     expenses: Expense[] = [];
-    newExpense: Expense = {title: '', amount: 0};
+    newExpense: Expense = {id: 0, title: '', amount: 0};
     plnToEur: number = 4.382;
-
 
     constructor() {
         makeAutoObservable(this);
@@ -29,19 +34,26 @@ class Store {
 
     addExpense() {
         if (this.newExpense.title.length < 3) {
-            return // TODO: --> show error message: Title too short;
+
+            // TODO: --> show error message: Title too short;
+            return;
         }
         this.expenses = addExpense(this.expenses, this.newExpense);
-        console.log(this.expenses, this.newExpense);
+        this.newExpense.title = '';
+        this.newExpense.amount = 0;
+        this.newExpense.id++;
         store.setExpenses(this.expenses);
 
-
-        this.newExpense = {title: '', amount: 0};
         // TODO: --> show message: Expense added
     }
 
-    removeExpense() {
-
+    removeExpense(e: any, id: number) {
+        this.expenses.forEach( exp => {
+            if (exp.id === id) {
+                console.log(this.expenses.indexOf(exp))
+                removeExpense(this.expenses, this.expenses.indexOf(exp))
+            }
+        });
     }
 
     sumExpenses() {

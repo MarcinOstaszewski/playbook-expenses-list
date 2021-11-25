@@ -18,12 +18,15 @@ const TransactionsTable: React.FC = () => {
                 {store.expenses.map( (expense, i) => {
                     return (
                         <tr key={i}>
-                            <td>{expense.title}</td>
+                            <td>{expense.title} </td>
                             <td>{expense.amount}</td>
-                            <td>{(expense.amount / store.plnToEur).toFixed(3)}</td>
+                            <td>{(expense.amount / store.plnToEur).toFixed(2)}</td>
                             <td>
-                                <div className="remove-expense">
-                                    Remove
+                                <div className="remove-expense"
+                                    data-id={expense.id}
+                                    onClick={e => store.removeExpense(e, expense.id)}
+                                >
+                                    Delete
                                 </div>
                             </td>
                         </tr>
