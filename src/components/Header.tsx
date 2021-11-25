@@ -4,6 +4,10 @@ import { observer } from 'mobx-react';
 import store from '../store/store';
 
 const Header: React.FC = () => {
+    const setPlnToEur = (value: number) => {
+        return value > 0 ? value : 0.001;
+    }
+
     return <>
         <div className="header">
             <div className="title">List of expenses</div>
@@ -12,7 +16,7 @@ const Header: React.FC = () => {
                     <input
                         type="number"
                         value={store.plnToEur}
-                        onChange={ e => store.plnToEur = parseFloat(e.target.value)}
+                        onChange={ e => store.plnToEur = setPlnToEur(parseFloat(e.target.value))}
                     />
                 <span className="pln-to-eur-label"> PLN</span>
             </div>
