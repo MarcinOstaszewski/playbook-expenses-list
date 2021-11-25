@@ -45,27 +45,38 @@
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  margin: 12px 0;
+  margin: 24px 0;
 }
 .form label {
   display: flex;
-  width: 35%;
+  width: 30%;
 }
-.form input {
+.form .error-message {
+  position: relative;
+  flex-direction: column;
+  width: 45%;
+  color: red;
+}
+.form .error-message input {
+  bottom: 3px;
+  width: 100%;
   display: flex;
-  width: 35%;
-  margin-left: 5%;
   padding: 6px;
 }
+.form .error-message span {
+  display: none;
+  position: absolute;
+}
+/* .form input {
+} */
 .form .button {
-  width: 15%;
+  width: 18%;
   margin-left: 5%;
   text-align: center;
   padding: 6px;
   border-radius: 4px;
   border: 1px solid #333;
   background-color: #ddd;
-  border-radius: 4px;
 }
 
 /* TABLE */
@@ -99,4 +110,10 @@ table .remove-expense {
 /* SUM */
 .sum-display {
   margin: 24px 0;
+}
+
+.header .get-current-rates,
+.form .button,
+table .remove-expense  {
+  cursor: pointer;
 }
