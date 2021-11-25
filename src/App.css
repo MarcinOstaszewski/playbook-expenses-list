@@ -15,8 +15,16 @@
   font-size: 32px;
   line-height: 32px;
 }
+.header .get-current-rates {
+  padding: 6px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background-color: #d3f5f8;
+}
 .header .pln-to-eur {
   display: flex;
+  vertical-align: bottom;
+  height: 24px;
 }
 .header .pln-to-eur input {
   width: 60px;
